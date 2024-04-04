@@ -67,6 +67,14 @@ class PromptIdentityBase():
         else:
             prompt = f"Hint: {hint}\n{prompt}"
         return prompt
+    
+    @staticmethod
+    def _add_artist_to_prompt(artist: str, prompt: str) -> str:
+        if "\{artist\}" in prompt:
+            prompt = prompt.replace("\{artist\}", artist)
+        else:
+            prompt = f"Artist: {artist}\n{prompt}"
+        return prompt
 
 class HintFromFilename(PromptIdentityBase):
     def __init__(self, args:Namespace=None):
@@ -123,6 +131,21 @@ class HintFromLeafDirectory(PromptIdentityBase):
         prompt = args.prompt
         leaf_folder_of_image = os.path.basename(os.path.dirname(image_path))
         return self._add_hint_to_prompt(leaf_folder_of_image, prompt)
+    
+class ArtistNameFromDirectory(PromptIdentityBase):
+    def __init__(self, args: Namespace = None):
+        super().__init__(
+            key="from_artist_directory",
+            description="Adds the artist name to the prompt using the directory name",
+            fn=self._from_artist_directory,
+            args=args
+        )
+
+    def _from_artist_directory(self, args: Namespace) -> str:
+        image_path = args.image_path
+        prompt = args.prompt
+        artist_directory = os.path.basename(os.path.dirname(image_path))
+        return self._add_artist_to_prompt(artist_directory, prompt)
 
 class MetadataProvider():
     """ provides and caches metadata"""

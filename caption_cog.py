@@ -227,6 +227,13 @@ def model_manager_factory(model_name: str):
         return MoaiManager(model_name)
     else:
         return CogVLMManager(model_name)
+    
+def use_directory_name(path):
+
+        directory_path = os.path.dirname(path)
+        directory_caption= f" In the style of {str(os.path.basename(directory_path))}."
+
+        return directory_caption
 
 def main(args):
     prompt_plugin_fn = load_prompt_alteration_plugin(args.prompt_plugin, args=args)
@@ -321,8 +328,14 @@ def main(args):
 
             caption += args.append
 
+            if args.append_dirname:
+
+                caption += use_directory_name(image_path)
+
             with open(candidate_caption_path, "w") as f:
+
                 f.write(caption)
+
             vram_gb = get_gpu_memory_map()
             elapsed_time = time.time() - cap_start_time
             logging.info(f"n:{i:05}, VRAM: {Fore.LIGHTYELLOW_EX}{vram_gb:0.1f} GB{Style.RESET_ALL}, elapsed: {Fore.LIGHTYELLOW_EX}{elapsed_time:0.1f}{Style.RESET_ALL} sec, Captioned {Fore.LIGHTYELLOW_EX}{image_path}{Style.RESET_ALL}: ")
@@ -409,6 +422,7 @@ if __name__ == "__main__":
     argparser.add_argument("--remove_starts_with", action="store_true", help="Removes the starts_with words from the output caption.")
     argparser.add_argument("--append_log", action="store_true", help="Sets logging to append mode.")
     argparser.add_argument("--model", type=str, default="THUDM/cogvlm-chat-hf", help="Model to use for captioning.")
+    argparser.add_argument("--append-dirname", action="store_true", help="Appends 'in the style of [dirname]' at the end of the caption")
     args, unknown_args = argparser.parse_known_args()
     
     configure_logging(args)

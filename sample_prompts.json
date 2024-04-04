@@ -1,24 +1,18 @@
 {
-  "batch_size": 3,		
+  "batch_size": 4,		
   "seed": 555,
-  "cfgs": [7, 4],
+  "cfgs": [10, 7, 4, 2],
   "scheduler": "dpm++",		
-  "num_inference_steps": 15,	
+  "num_inference_steps": 20,	
   "show_progress_bars": true, 
   "samples": [
     {
-      "prompt": "ted bennet and a man sitting on a sofa with a kitchen in the background",
-      "negative_prompt": "distorted, deformed"
+      "prompt": "an abstract painting of a woman holding a knife, in the style of George Keyt",
+      "size": [768 , 768]
     },
     {
-      "prompt": "a photograph of ted bennet riding a bicycle",
-      "seed": -1
-    },
-    {
-      "random_caption": true,		
-      "seed": 555,
-      "cfgs": [1,11],      
-      "size": [640, 384]
+      "prompt": "an abstract painting with red, yellow and green colors, in the style of Christopher Kulendran Thomas",
+      "size": [768 , 768]
     }
   ]
 }
