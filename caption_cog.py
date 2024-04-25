@@ -231,7 +231,7 @@ def model_manager_factory(model_name: str):
 def use_directory_name(path):
 
         directory_path = os.path.dirname(path)
-        directory_caption= f" In the style of {str(os.path.basename(directory_path))}."
+        directory_caption= f"By {str(os.path.basename(directory_path))}."
 
         return directory_caption
 
@@ -328,9 +328,10 @@ def main(args):
 
             caption += args.append
 
-            if args.append_dirname:
+            if args.prepend_dirname:
 
-                caption += use_directory_name(image_path)
+                dirname = use_directory_name(image_path)
+                caption = dirname + caption
 
             with open(candidate_caption_path, "w") as f:
 
@@ -422,7 +423,7 @@ if __name__ == "__main__":
     argparser.add_argument("--remove_starts_with", action="store_true", help="Removes the starts_with words from the output caption.")
     argparser.add_argument("--append_log", action="store_true", help="Sets logging to append mode.")
     argparser.add_argument("--model", type=str, default="THUDM/cogvlm-chat-hf", help="Model to use for captioning.")
-    argparser.add_argument("--append-dirname", action="store_true", help="Appends 'in the style of [dirname]' at the end of the caption")
+    argparser.add_argument("--prepend-dirname", action="store_true", help="Prepends 'By [dirname]' at the beginning of the caption")
     args, unknown_args = argparser.parse_known_args()
     
     configure_logging(args)

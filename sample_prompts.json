@@ -8,11 +8,15 @@
   "samples": [
     {
       "prompt": "an abstract painting of a woman holding a knife, in the style of George Keyt",
-      "size": [768 , 768]
+      "size": [1024 , 1024]
     },
     {
-      "prompt": "an abstract painting with red, yellow and green colors, in the style of Christopher Kulendran Thomas",
-      "size": [768 , 768]
+      "prompt": "an abstract painting with red, yellow and green colors, in the style of Pablo Picasso",
+      "size": [1024 , 1024]
+    },
+    {
+      "prompt": "an abstract painting with red, yellow and green colors, in the style of Albert Oehlen",
+      "size": [1024 , 1024]
     }
   ]
 }

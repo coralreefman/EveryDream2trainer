@@ -1,0 +1,33 @@
+possible prompts for cog_caption:
+
+how to avoid any interpretation?
+
+only formal elements
+purely formal 
+
+how to avoid 'the tyle is reminiscent' etc?
+do not mention style?
+
+'Write a concise, accurate, blunt, and detailed formal description of this artwork including the medium, subject matter, colors, composition, brushstrokes. Avoid euphemisms, influences and time period and avoid assumptions about what the painting might evoke. Avoid interpretation. Do not explain anything, focus on observations only. Do not interpret the painting, focus on a formal description. Write in short descriptive sentences or keywords. Avoid numbered or bulleted lists.'
+
+python caption_cog.py --append-dirname --image_dir "/home/studio/Code/image_tools/output" --prompt 'Write a detailed formal description of this artwork. Try to include the medium and the subject matter as well as colors, composition and brushstrokes. Avoid euphemisms, influences and time period. Avoid assumptions about what the painting might evoke. Avoid interpretation. Do not explain anything, focus on observations only.' 
+
+python caption_cog.py --append-dirname --image_dir "/home/studio/Code/image_tools/output" --prompt 'Write a list separated by commas that describes the formal qualities of this artwork. Avoid euphemisms, influences and time period. Avoid assumptions about what the painting might evoke. Avoid interpretation. Do not explain anything, focus on formal observations only. Never ever write numbers or a numbered list.' 
+
+'Write a concise, accurate, and detailed formal description of this artwork. try to include the medium, subject matter, colors, composition, brushstrokes. Avoid euphemisms, influences and time period. Avoid interpretation. Do not explain anything, focus on a formal description. Write in short descriptive sentences or keywords.'
+
+'Write a concise, accurate, and detailed formal description of this artwork. Include the medium, subject matter, colors, composition, brushstrokes.  Avoid euphemisms, influences and time period. Write in short descriptive sentences or keywords.'
+
+python caption_cog.py --prepend-dirname --image_dir "/home/studio/Code/image_tools/output" --prompt 'Write a concise, accurate, and detailed formal description of this artwork. include the medium, subject matter, colors, brushstrokes. Avoid euphemisms, influences and time period. Write in keywords.' --bad_words "depicts, poses, posing, showcases, appears, suggests, influenced, '1.', '2.', '3.', '4.', 'Subject Matter:', 'Medium:', 'Colors:', 'Composition:', 'artwork', 'giving a sense', 'gives a sense', 'exhibit'" --num_beams 1
+
+python caption_cog.py --prepend-dirname --image_dir "/home/studio/Code/image_tools/output" --prompt 'Write a brief description of this artwork. Afterwards, create a list of keywords decribing this artwork. The keywords should describe the medium, subject matter, colors, brushstrokes. Avoid euphemisms.' --bad_words "depicts, symbolizes, poses, posing, showcases, appears, suggests, influenced, '1.', '2.', '3.', '4.', 'Subject Matter:', 'Medium:', 'Colors:', 'Composition:', artwork, sense, 'giving a sense', 'gives a sense', 'exhibit', 'Time Period:', 'Time Period', 'Influences:' ,'This artwork is a painting'" --num_beams 1
+
+
+
+
+
+--max_length 1344
+
+ --max_new_tokens 70
+
+--bad_words "depicts, poses, posing, showcases, appears, suggests, influenced"
